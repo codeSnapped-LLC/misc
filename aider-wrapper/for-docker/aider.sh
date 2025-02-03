@@ -58,7 +58,7 @@ DOCKER_RUN_OPTS=(
     -it
     --user "$(id -u):$(id -g)"
     --volume "$(pwd)":/app
-    --volume $HOME/.aider:/home/user/.aider
+    --volume "$AIDER_HOME":/home/user/.aider
     -e HOME=/home/user
     -e GIT_AUTHOR_NAME="$(git config --global --get user.name)"
     -e GIT_AUTHOR_EMAIL="$(git config --global --get user.email)"
