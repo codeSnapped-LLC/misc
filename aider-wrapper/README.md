@@ -2,6 +2,15 @@
 
 This script provides a convenient way to run Aider using Docker. Follow the steps below to set it up and use it effectively.
 
+## Prerequisites
+
+Before using the Aider Docker wrapper or the standalone script, ensure you have the following prerequisites:
+
+- **Docker**: Required for running the Docker wrapper. Install Docker from [Docker's official site](https://www.docker.com/get-started).
+- **Python 3.8-3.13**: Required for running Aider without Docker. Ensure Python is installed and accessible in your PATH.
+- **Aider**: Install Aider using the instructions from [Aider's installation page](https://aider.chat/docs/install.html).
+- **API Keys**: Obtain necessary API keys for the LLMs you intend to use (e.g., OpenAI, Anthropic, Deepseek).
+
 ## Setup Instructions
 
 ### Using Docker
