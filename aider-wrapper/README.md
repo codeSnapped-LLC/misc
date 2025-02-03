@@ -34,6 +34,10 @@ This script provides a convenient way to run Aider using Docker. Follow the step
      ```
 
 5. **Environment Configuration:**
+   - Obtain API keys for the LLMs:
+     - **OpenAI**: Visit [OpenAI API](https://beta.openai.com/signup/) to sign up and get your API key.
+     - **Anthropic**: Visit [Anthropic](https://www.anthropic.com/) for more information on obtaining an API key.
+     - **Deepseek**: Visit [Deepseek](https://deepseek.com/) to learn how to acquire an API key.
    - Copy the `.env.example` file to `$HOME/.aider/.env` and fill in the necessary API keys and configuration details.
 
 ## Usage
