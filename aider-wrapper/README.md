@@ -40,6 +40,12 @@ This script provides a convenient way to run Aider using Docker. Follow the step
      - **Deepseek**: Visit [Deepseek](https://deepseek.com/) to learn how to acquire an API key.
    - Copy the `.env.example` file to `$HOME/.aider/.env` and fill in the necessary API keys and configuration details.
 
+## Prompt Architect
+
+The Prompt Architect feature in Aider allows you to customize and optimize prompts for different LLMs, enhancing the interaction and results you get from the AI models. This feature is particularly useful for tailoring the AI's responses to better fit your specific needs and use cases.
+
+For more details about Aider and its features, visit the official page: [aider.chat](https://aider.chat)
+
 ## Usage
 
 - Run the script using the command:
