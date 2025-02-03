@@ -16,7 +16,24 @@ This script provides a convenient way to run Aider using Docker. Follow the step
      - For Bash: `source ~/.bashrc`
      - For Zsh: `source ~/.zshrc`
 
-3. **Environment Configuration:**
+3. **Create Necessary Directories:**
+   - Run the following commands to create the required directories:
+     ```bash
+     mkdir -p $HOME/scripts
+     mkdir -p $HOME/.aider
+     ```
+
+4. **Copy and Configure Files:**
+   - Copy the `aider.sh` script to your scripts directory:
+     ```bash
+     cp aider-wrapper/for-docker/aider.sh $HOME/scripts/
+     ```
+   - Copy and rename the `.env.example` file to your Aider configuration directory:
+     ```bash
+     cp aider-wrapper/for-docker/.env.example $HOME/.aider/.env
+     ```
+
+5. **Environment Configuration:**
    - Copy the `.env.example` file to `$HOME/.aider/.env` and fill in the necessary API keys and configuration details.
 
 ## Usage
