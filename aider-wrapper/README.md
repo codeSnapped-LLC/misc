@@ -88,12 +88,13 @@ For more details about Aider and its features, visit the official page: [aider.c
 
 To initialize new repositories with GitFlow and semantic versioning:
 
-1. Use the setup script:
+1. Use the setup script from the gitflow-setup directory:
 ```bash
+cd aider-wrapper/gitflow-setup
 ./setup-repo.sh git@github.com:yourusername/yourrepo.git
 ```
 
-2. Follow the branching workflow outlined in the generated README.md
+2. Follow the branching workflow outlined in gitflow-readme.md
 
 ## Usage
 
