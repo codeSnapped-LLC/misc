@@ -62,10 +62,18 @@ main() {
     cd "$REPO_NAME" || { echo -e "${RED}Failed to enter repository directory${NC}"; return 1; }
     init_gitflow
     create_gitversion_config
+    setup_precommit
     initial_commit
 
     echo -e "${GREEN}Repository setup complete in ${REPO_NAME}${NC}"
     echo -e "Read gitflow-readme.md for usage instructions"
+}
+
+setup_precommit() {
+    echo -e "${GREEN}Setting up pre-commit hooks...${NC}"
+    cp ../pre-commit-config.yaml .pre-commit-config.yaml
+    pre-commit install
+    pre-commit run --all-files || { echo -e "${RED}Pre-commit checks failed${NC}"; return 1; }
 }
 
 main "$@"
