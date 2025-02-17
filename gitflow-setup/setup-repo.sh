@@ -32,7 +32,7 @@ init_gitflow() {
 
 create_gitversion_config() {
     echo -e "${GREEN}Creating gitversion config...${NC}"
-    cp ../gitversion-config.txt gitversion.yml
+    cp gitflow-setup/gitversion-config.txt gitversion.yml
 }
 
 initial_commit() {
@@ -62,7 +62,7 @@ main() {
 
 setup_precommit() {
     echo -e "${GREEN}Setting up pre-commit hooks...${NC}"
-    cp ../pre-commit-config.txt .pre-commit-config.yaml
+    cp gitflow-setup/pre-commit-config.txt .pre-commit-config.yaml
     pre-commit install
     pre-commit run --all-files || { echo -e "${RED}Pre-commit checks failed${NC}"; return 1; }
 }
