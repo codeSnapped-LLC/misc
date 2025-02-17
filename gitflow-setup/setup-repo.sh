@@ -71,7 +71,7 @@ main() {
 
 setup_precommit() {
     echo -e "${GREEN}Setting up pre-commit hooks...${NC}"
-    cp ../pre-commit-config.yaml .pre-commit-config.yaml
+    cp ../pre-commit-config.txt .pre-commit-config.yaml
     pre-commit install
     pre-commit run --all-files || { echo -e "${RED}Pre-commit checks failed${NC}"; return 1; }
 }
