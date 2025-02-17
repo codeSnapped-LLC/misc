@@ -1,0 +1,18 @@
+mode: Mainline
+branches:
+  main:
+    mode: Mainline
+  develop:
+    mode: Mainline
+    tracks-release-branches: true
+    regex: ^develop$
+  feature:
+    mode: ContinuousDeployment
+  release:
+    mode: ContinuousDeployment
+  hotfix:
+    mode: ContinuousDeployment
+  support:
+    mode: ContinuousDeployment
+  other:
+    mode: ContinuousDeployment

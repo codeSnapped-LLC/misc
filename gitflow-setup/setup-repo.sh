@@ -32,16 +32,7 @@ init_gitflow() {
 
 create_gitversion_config() {
     echo -e "${GREEN}Creating gitversion config...${NC}"
-    cat > gitversion.yml <<EOL
-mode: Mainline
-branches:
-  main:
-    mode: Mainline
-  develop:
-    mode: Mainline
-    tracks-release-branches: true
-    regex: ^develop$
-EOL
+    cp ../gitversion-config.txt gitversion.yml
 }
 
 initial_commit() {
