@@ -84,9 +84,20 @@ The Prompt Architect feature in Aider allows you to customize and optimize promp
 
 For more details about Aider and its features, visit the official page: [aider.chat](https://aider.chat)
 
+## GitFlow Repository Setup
+
+To initialize new repositories with GitFlow and semantic versioning:
+
+1. Use the setup script:
+```bash
+./setup-repo.sh git@github.com:yourusername/yourrepo.git
+```
+
+2. Follow the branching workflow outlined in the generated README.md
+
 ## Usage
 
-- Run the script using the command:
+- Run the Aider wrapper script:
   ```bash
   aider.sh
   ```
