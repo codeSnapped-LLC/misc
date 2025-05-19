@@ -1,4 +1,4 @@
-# ~/.zshrc — macOS Dev Environment (with uv, tofu, ssh-agent)
+# ~/.zshrc — macOS Dev Environment
 
 # ----------- ENVIRONMENT VARIABLES -----------
 export EDITOR="vim"
@@ -7,7 +7,7 @@ export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 
 # ----------- PATH MANAGEMENT -----------
-export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/local/sbin:$HOME/bin:$PATH"
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/local/sbin:$HOME/bin:$HOME/scripts:$PATH"
 
 # ----------- ALIASES -----------
 alias ll="ls -alF"
