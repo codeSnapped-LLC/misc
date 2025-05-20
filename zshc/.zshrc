@@ -6,6 +6,11 @@ export VISUAL="vim"
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 
+# Source all ~/.env/.env-* files if they exist
+for env_file in ~/.env/.env-*; do
+  [ -f "$env_file" ] && source "$env_file"
+done
+
 # ----------- PATH MANAGEMENT -----------
 export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/local/sbin:$HOME/bin:$HOME/scripts:$PATH"
 
@@ -27,12 +32,12 @@ alias gp="git push"
 alias terraform="tofu"
 alias tf="tofu"
 
-# ----------- UV (Python virtual environment manager) -----------
+# ----------- PYTHON (UV: Universal Virtualenv Manager) -----------
 if command -v uv >/dev/null 2>&1; then
   export UV_SYSTEM_PYTHON=1
 fi
 
-# ----------- NVM (Node Version Manager) -----------
+# ----------- NODE (NVM: Node Version Manager) -----------
 export NVM_DIR="$HOME/.nvm"
 if [ -s "$NVM_DIR/nvm.sh" ]; then
   source "$NVM_DIR/nvm.sh"
@@ -70,5 +75,9 @@ setopt share_history
 # ----------- FILE PERMISSIONS DEFAULT -----------
 umask 022
 
+# ----------- SYSTEM RESOURCE LIMITS -----------
+# Raise the soft limit for open files (useful for dev work with many handles)
+ulimit -n 65535
+
 # ----------- LOAD CUSTOM EXTENSIONS -----------
-# [ -f ~/.custom_zsh ] && source ~/.custom_zsh
+[ -f ~/.custom_zsh ] && source ~/.custom_zsh
