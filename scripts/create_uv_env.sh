@@ -44,10 +44,19 @@ create_env() {
 }
 
 init_project_files() {
-  touch .env && log "Created empty .env"
+  # Create .env with secure permissions
+  if [ ! -f .env ]; then
+    touch .env
+    chmod 600 .env
+    log "Created empty .env with secure permissions (600)"
+  else
+    log ".env already exists — ensuring permissions..."
+    chmod 600 .env
+  fi
   
   if [ ! -f requirements.txt ]; then
-    touch requirements.txt && log "Created empty requirements.txt"
+    touch requirements.txt
+    log "Created empty requirements.txt"
   else
     log "requirements.txt already exists — skipped."
   fi
