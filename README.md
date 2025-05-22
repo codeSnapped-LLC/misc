@@ -36,7 +36,22 @@ cd misc
 
 ## Utility Scripts
 
-### 1. `create_uv_env.sh`
+### 1. `refresh_scripts.sh`
+Updates all installed scripts to their latest versions.
+
+**Usage:**
+```bash
+~/scripts/refresh_scripts.sh
+```
+
+**Features:**
+- Downloads latest versions of all scripts
+- Preserves existing permissions
+- Maintains detailed log file
+- Can self-update
+- Safe error handling
+
+### 2. `create_uv_env.sh`
 Creates Python virtual environments using UV.
 
 **Usage:**
@@ -50,7 +65,7 @@ Creates Python virtual environments using UV.
 - Generates empty `.env` and `requirements.txt` if missing
 - Validates UV installation
 
-### 2. `fix_permissions.sh`
+### 3. `fix_permissions.sh`
 Unified permissions management for secure directories and files.
 
 **Usage:**

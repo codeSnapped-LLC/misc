@@ -155,8 +155,9 @@ install_scripts() {
   for script in "${scripts[@]}"; do
     local script_name=$(basename "$script")
     download_file "$script" "$scripts_dir/$script_name"
-    chmod 750 "$scripts_dir/$script_name"
-    log "Installed script $script_name"
+    # Set executable permissions only for owner
+    chmod 700 "$scripts_dir/$script_name"
+    log "Installed script $script_name with permissions 700"
   done
   
   success "Installed scripts to $scripts_dir"
