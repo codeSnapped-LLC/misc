@@ -126,12 +126,54 @@ install_scripts() {
   success "Installed scripts to $scripts_dir"
 }
 
+# Initialize secure env directory and config
+init_secure_env() {
+  local env_dir="$HOME/.secure_env"
+  local env_file="$env_dir/secrets.sh"
+  local zshrc="$HOME/.zshrc"
+  local block_start="# >>> secure env loader >>>"
+  local block_end="# <<< secure env loader <<<"
+
+  create_secure_dir "$env_dir"
+  
+  # Create secrets file with instructions
+  if [ ! -f "$env_file" ]; then
+    cat <<EOF > "$env_file"
+#!/bin/bash
+
+# Add your sensitive environment variables here
+# Example:
+# export API_KEY="your-secret-key"
+# export DB_PASSWORD="your-db-password"
+
+# Note: This file has strict permissions (600)
+# Only edit this file directly, don't move or copy it
+EOF
+    chmod 600 "$env_file"
+    log "Created $env_file with secure permissions and instructions"
+  fi
+
+  # Add sourcing block to .zshrc if not present
+  if ! grep -q "$block_start" "$zshrc"; then
+    cat <<EOF >> "$zshrc"
+
+$block_start
+# Source sensitive environment variables if the file exists
+[ -f "$env_file" ] && source "$env_file"
+$block_end
+EOF
+    log "Added secure_env sourcing block to .zshrc"
+  else
+    log "secure_env block already exists in .zshrc - skipping"
+  fi
+}
+
 # Create secure env directories
 create_env_dirs() {
   create_secure_dir "$HOME/.env"
-  create_secure_dir "$HOME/.secure_env"
+  init_secure_env
   
-  success "Created secure environment directories"
+  success "Created and configured secure environment directories"
 }
 
 # Main installation function

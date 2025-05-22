@@ -1,6 +1,8 @@
 #!/bin/bash
 
 # Fixes permissions on ~/.secure_env and its contents
+# Ensures directory is 700 and files are 600
+# Logs actions and handles errors gracefully
 
 set -euo pipefail
 
@@ -17,25 +19,31 @@ error_exit() {
   exit 1
 }
 
-check_and_fix() {
+check_env_dir() {
   if [ ! -d "$ENV_DIR" ]; then
-    error_exit "$ENV_DIR does not exist"
+    error_exit "Secure env directory $ENV_DIR does not exist. Run install_misc.sh first."
   fi
+}
 
-  chmod 700 "$ENV_DIR" || error_exit "Failed to set dir permissions"
-  log "Set permissions on $ENV_DIR to 700"
+fix_dir_permissions() {
+  chmod 700 "$ENV_DIR" || error_exit "Failed to set permissions on $ENV_DIR"
+  log "Set directory permissions to 700"
+}
 
+fix_file_permissions() {
   if [ -f "$ENV_FILE" ]; then
-    chmod 600 "$ENV_FILE" || error_exit "Failed to set file permissions"
-    log "Set permissions on $ENV_FILE to 600"
+    chmod 600 "$ENV_FILE" || error_exit "Failed to set permissions on $ENV_FILE"
+    log "Set permissions to 600 for $ENV_FILE"
   else
-    log "$ENV_FILE not found, skipping file perms"
+    log "No secrets file found at $ENV_FILE - skipping"
   fi
 }
 
 main() {
-  check_and_fix
-  log "Permission check complete"
+  check_env_dir
+  fix_dir_permissions
+  fix_file_permissions
+  log "Secure env permission fix complete"
 }
 
 main
