@@ -7,7 +7,7 @@ set -euo pipefail
 
 # Constants
 REPO_BASE="https://raw.githubusercontent.com/codeSnapped-LLC/misc"
-REPO_BRANCH="develop"
+REPO_BRANCH="refs/heads/develop"
 REPO_URL="$REPO_BASE/$REPO_BRANCH"
 
 # Verify script is being run from correct location

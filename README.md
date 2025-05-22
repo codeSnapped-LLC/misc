@@ -18,16 +18,16 @@ The primary installation script that sets up all configurations.
 Recommended method (with download verification):
 ```bash
 # Try both possible paths since GitHub raw URLs can be inconsistent
-curl -sSL https://raw.githubusercontent.com/codeSnapped-LLC/misc/develop/install_misc.sh -o install_misc.sh || \
-curl -sSL https://raw.githubusercontent.com/codeSnapped-LLC/misc/develop/scripts/install_misc.sh -o install_misc.sh
+curl -sSL https://raw.githubusercontent.com/codeSnapped-LLC/misc/refs/heads/develop/install_misc.sh -o install_misc.sh || \
+curl -sSL https://raw.githubusercontent.com/codeSnapped-LLC/misc/refs/heads/develop/scripts/install_misc.sh -o install_misc.sh
 
 chmod +x install_misc.sh && ./install_misc.sh
 ```
 
 One-line method (less recommended):
 ```bash
-curl -sSL https://raw.githubusercontent.com/codeSnapped-LLC/misc/develop/install_misc.sh | bash -s -- || \
-curl -sSL https://raw.githubusercontent.com/codeSnapped-LLC/misc/develop/scripts/install_misc.sh | bash -s --
+curl -sSL https://raw.githubusercontent.com/codeSnapped-LLC/misc/refs/heads/develop/install_misc.sh | bash -s -- || \
+curl -sSL https://raw.githubusercontent.com/codeSnapped-LLC/misc/refs/heads/develop/scripts/install_misc.sh | bash -s --
 ```
 
 Troubleshooting:
