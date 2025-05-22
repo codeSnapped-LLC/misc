@@ -6,7 +6,16 @@
 set -euo pipefail
 
 # Constants
-REPO_URL="https://raw.githubusercontent.com/codeSnapped-LLC/misc/develop"
+REPO_BASE="https://raw.githubusercontent.com/codeSnapped-LLC/misc"
+REPO_BRANCH="develop"
+REPO_URL="$REPO_BASE/$REPO_BRANCH"
+
+# Verify script is being run from correct location
+if [[ "$0" == *"install_misc.sh" ]]; then
+    SCRIPT_SOURCE="local"
+else
+    SCRIPT_SOURCE="remote"
+fi
 TEMP_DIR=$(mktemp -d)
 LOG_FILE="$HOME/misc_install.log"
 
@@ -73,15 +82,28 @@ download_file() {
   
   log "Downloading $url to $dest"
   
-  # Check if file exists before downloading
-  if ! curl -sSL -f "$url" -o "$dest"; then
-    error_exit "Failed to download $url - file not found or network error"
+  # Try downloading with verbose error reporting
+  if ! curl -sSL -f "$url" -o "$dest" 2>> "$LOG_FILE"; then
+    log "Curl failed with URL: $url"
+    log "Trying alternative path..."
+    
+    # Try alternative path without scripts/ prefix
+    local alt_src="${src#scripts/}"
+    if [[ "$alt_src" != "$src" ]]; then
+      url="${REPO_URL}/${alt_src}"
+      if ! curl -sSL -f "$url" -o "$dest" 2>> "$LOG_FILE"; then
+        error_exit "Failed to download from both paths:\n- ${REPO_URL}/${src}\n- $url"
+      fi
+      log "Successfully downloaded from alternative path: $url"
+    else
+      error_exit "Failed to download $url\nCheck if file exists at: ${REPO_BASE}/tree/${REPO_BRANCH}/${src}"
+    fi
   fi
   
   # Verify the downloaded file isn't an HTML error page
-  if [[ -f "$dest" ]] && grep -q "<html" "$dest"; then
+  if [[ -f "$dest" ]] && (head -1 "$dest" | grep -q "<html"); then
     rm -f "$dest"
-    error_exit "Downloaded file appears to be an HTML error page - check URL"
+    error_exit "Downloaded HTML error page from $url\nCheck if file exists at: ${REPO_BASE}/tree/${REPO_BRANCH}/${src}"
   fi
 }
 
