@@ -41,23 +41,36 @@ fix_permissions() {
     local errors=0
     
     # Process directories
+    # Process directories
     for dir in "${!SECURE_DIRS[@]}"; do
-        if [ -d "$dir" ]; then
-            local perm="${SECURE_DIRS[$dir]}"
-            if [ "$(stat -c %a "$dir")" != "$perm" ]; then
-                log "Setting $dir permissions to $perm"
-                chmod "$perm" "$dir" || { log "${RED}Failed to set permissions on $dir${NC}"; ((errors++)); }
+        if [ ! -d "$dir" ]; then
+            log "${YELLOW}Directory $dir does not exist - skipping${NC}"
+            continue
+        fi
+        
+        local perm="${SECURE_DIRS[$dir]}"
+        if [ "$(stat -c %a "$dir" 2>/dev/null)" != "$perm" ]; then
+            log "Setting $dir permissions to $perm"
+            if ! chmod "$perm" "$dir" 2>/dev/null; then
+                log "${RED}Failed to set permissions on $dir${NC}"
+                ((errors++))
             fi
         fi
     done
     
     # Process files
     for file in "${!SECURE_FILES[@]}"; do
-        if [ -f "$file" ]; then
-            local perm="${SECURE_FILES[$file]}"
-            if [ "$(stat -c %a "$file")" != "$perm" ]; then
-                log "Setting $file permissions to $perm"
-                chmod "$perm" "$file" || { log "${RED}Failed to set permissions on $file${NC}"; ((errors++)); }
+        if [ ! -f "$file" ]; then
+            log "${YELLOW}File $file does not exist - skipping${NC}"
+            continue
+        fi
+        
+        local perm="${SECURE_FILES[$file]}"
+        if [ "$(stat -c %a "$file" 2>/dev/null)" != "$perm" ]; then
+            log "Setting $file permissions to $perm"
+            if ! chmod "$perm" "$file" 2>/dev/null; then
+                log "${RED}Failed to set permissions on $file${NC}"
+                ((errors++))
             fi
         fi
     done
