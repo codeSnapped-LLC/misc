@@ -14,9 +14,23 @@ The primary installation script that sets up all configurations.
 - Provides detailed logging
 
 ### Installation:
+
+Recommended method (with download verification):
 ```bash
-curl -sSL https://raw.githubusercontent.com/codeSnapped-LLC/misc/develop/scripts/install_misc.sh | bash
+curl -sSL https://raw.githubusercontent.com/codeSnapped-LLC/misc/develop/scripts/install_misc.sh -o install_misc.sh && \
+chmod +x install_misc.sh && \
+./install_misc.sh
 ```
+
+One-line method (less recommended):
+```bash
+curl -sSL https://raw.githubusercontent.com/codeSnapped-LLC/misc/develop/scripts/install_misc.sh | bash -s -- 
+```
+
+If you get 404 errors:
+1. Verify the repository exists at the URL
+2. Check you have the correct branch name (develop)
+3. Ensure the script path is correct
 
 ## Utility Scripts
 

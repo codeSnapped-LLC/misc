@@ -72,7 +72,17 @@ download_file() {
   local url="${REPO_URL}/${src}"
   
   log "Downloading $url to $dest"
-  curl -sSL "$url" -o "$dest" || error_exit "Failed to download $url"
+  
+  # Check if file exists before downloading
+  if ! curl -sSL -f "$url" -o "$dest"; then
+    error_exit "Failed to download $url - file not found or network error"
+  fi
+  
+  # Verify the downloaded file isn't an HTML error page
+  if [[ -f "$dest" ]] && grep -q "<html" "$dest"; then
+    rm -f "$dest"
+    error_exit "Downloaded file appears to be an HTML error page - check URL"
+  fi
 }
 
 # Create directory with secure permissions
