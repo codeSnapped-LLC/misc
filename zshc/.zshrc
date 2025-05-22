@@ -6,10 +6,12 @@ export VISUAL="vim"
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 
-# Source all ~/.env/.env-* files if they exist
-for env_file in ~/.env/.env-*; do
-  [ -f "$env_file" ] && source "$env_file"
-done
+# Secure environment loader
+# Files are sourced in this order:
+# 1. ~/.secure_env/exports.sh - Non-sensitive environment variables
+# 2. ~/.secure_env/secrets.sh - Sensitive credentials (permissions 600)
+[ -f "$HOME/.secure_env/exports.sh" ] && source "$HOME/.secure_env/exports.sh"
+[ -f "$HOME/.secure_env/secrets.sh" ] && source "$HOME/.secure_env/secrets.sh"
 
 # ----------- PATH MANAGEMENT -----------
 export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/local/sbin:$HOME/bin:$HOME/scripts:$PATH"

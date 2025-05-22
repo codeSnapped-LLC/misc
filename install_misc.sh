@@ -149,7 +149,6 @@ install_scripts() {
   local scripts=(
     "scripts/fix_permissions.sh"
     "scripts/create_uv_env.sh"
-    "scripts/init_secure_env.sh"
   )
   
   for script in "${scripts[@]}"; do
