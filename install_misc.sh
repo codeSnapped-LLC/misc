@@ -1,7 +1,12 @@
 #!/bin/bash
 
 # Installation script for codeSnapped-LLC/misc configs and scripts
-# Can be run with: curl -sSL https://raw.githubusercontent.com/codeSnapped-LLC/misc/develop/scripts/install_misc.sh | bash
+# Can be run with:
+#   curl -sSL https://raw.githubusercontent.com/codeSnapped-LLC/misc/refs/heads/develop/install_misc.sh | bash
+# Or download first:
+#   curl -sSL https://raw.githubusercontent.com/codeSnapped-LLC/misc/refs/heads/develop/install_misc.sh -o install_misc.sh
+#   chmod +x install_misc.sh
+#   ./install_misc.sh
 
 set -euo pipefail
 

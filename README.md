@@ -15,37 +15,24 @@ The primary installation script that sets up all configurations.
 
 ### Installation:
 
-Recommended method (with download verification):
+Recommended method:
 ```bash
-# Try both possible paths since GitHub raw URLs can be inconsistent
-curl -sSL https://raw.githubusercontent.com/codeSnapped-LLC/misc/refs/heads/develop/install_misc.sh -o install_misc.sh || \
-curl -sSL https://raw.githubusercontent.com/codeSnapped-LLC/misc/refs/heads/develop/scripts/install_misc.sh -o install_misc.sh
-
-chmod +x install_misc.sh && ./install_misc.sh
+curl -sSL https://raw.githubusercontent.com/codeSnapped-LLC/misc/refs/heads/develop/install_misc.sh -o install_misc.sh
+chmod +x install_misc.sh
+./install_misc.sh
 ```
 
 One-line method (less recommended):
 ```bash
-curl -sSL https://raw.githubusercontent.com/codeSnapped-LLC/misc/refs/heads/develop/install_misc.sh | bash -s -- || \
-curl -sSL https://raw.githubusercontent.com/codeSnapped-LLC/misc/refs/heads/develop/scripts/install_misc.sh | bash -s --
+curl -sSL https://raw.githubusercontent.com/codeSnapped-LLC/misc/refs/heads/develop/install_misc.sh | bash
 ```
 
-Troubleshooting:
-1. Verify the script exists at:
-   - https://github.com/codeSnapped-LLC/misc/blob/develop/install_misc.sh
-   - https://github.com/codeSnapped-LLC/misc/blob/develop/scripts/install_misc.sh
-2. Check your network connection
-3. Try cloning the repo instead:
-   ```bash
-   git clone https://github.com/codeSnapped-LLC/misc.git
-   cd misc
-   ./install_misc.sh
-   ```
-
-If you get 404 errors:
-1. Verify the repository exists at the URL
-2. Check you have the correct branch name (develop)
-3. Ensure the script path is correct
+Alternative method (clone repo):
+```bash
+git clone https://github.com/codeSnapped-LLC/misc.git
+cd misc
+./install_misc.sh
+```
 
 ## Utility Scripts
 
