@@ -147,8 +147,7 @@ install_scripts() {
   
   # List of scripts to install
   local scripts=(
-    "scripts/fix_env_permissions.sh"
-    "scripts/fix_secure_env_perms.sh"
+    "scripts/fix_permissions.sh"
     "scripts/create_uv_env.sh"
     "scripts/init_secure_env.sh"
   )

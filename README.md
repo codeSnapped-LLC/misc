@@ -50,32 +50,25 @@ Creates Python virtual environments using UV.
 - Generates empty `.env` and `requirements.txt` if missing
 - Validates UV installation
 
-### 2. `fix_env_permissions.sh`
-Secures permissions for environment files.
+### 2. `fix_permissions.sh`
+Unified permissions management for secure directories and files.
 
 **Usage:**
 ```bash
-./fix_env_permissions.sh
+./fix_permissions.sh
 ```
 
 **Features:**
-- Sets `~/.env` directory to 700 permissions
-- Sets all files in `~/.env` to 600 permissions
-- Maintains detailed permission log
-
-### 3. `fix_secure_env_perms.sh`
-Specialized permissions for sensitive environment files.
-
-**Usage:**
-```bash
-./fix_secure_env_perms.sh
-```
-
-**Features:**
-- Secures `~/.secure_env` directory (700)
-- Protects `secrets.sh` file (600)
-- Includes existence checks
-- Detailed error logging
+- Handles multiple secure locations:
+  - `~/.ssh` directory and key files
+  - `~/.env` directory and files
+  - `~/.secure_env` directory and files
+- Sets appropriate permissions for each file type:
+  - 700 for secure directories
+  - 600 for sensitive files
+  - 644 for non-sensitive configs
+- Color-coded output and error handling
+- Detailed logging of changes
 
 ### 4. `setup_git_config.sh`
 Interactive Git configuration setup.
